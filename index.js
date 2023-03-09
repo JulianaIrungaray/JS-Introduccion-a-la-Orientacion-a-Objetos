@@ -1,5 +1,3 @@
-
-/*Importación de clases*/
 import {Cliente} from './Cliente.js'
 import {CuentaCorriente} from './CuentaCorriente.js';
 
@@ -15,9 +13,8 @@ const cuentaDeMaria = new CuentaCorriente(cliente2, '2', '002');
 let saldo = cuentaDeLeonardo.verSaldo(); 
 
 saldo = cuentaDeLeonardo.depositoEnCuenta(150);
-console.log('El Saldo actual (CuentaLeonardo) '+saldo);
 
-console.log (cuentaDeMaria.cliente);
-console.log(cuentaDeLeonardo.cliente);
+console.log(CuentaCorriente.cantidadCuentas);
+
 
 
