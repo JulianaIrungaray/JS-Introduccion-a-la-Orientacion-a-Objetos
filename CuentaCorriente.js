@@ -1,37 +1,48 @@
+import { Cliente } from "./Cliente.js";
+
 export class CuentaCorriente
 {
-    cliente;
+    #cliente;
     numero;
     agencia;
     #saldo;
 
-    constructor(){
-        this.cliente = null;
-        this.numero = '';       
-        this.agencia = '';
+    set cliente(valor) {
+        if (valor instanceof Cliente) //Si el valor recibido es una instancia...
+            this.#cliente = valor;
+    }
+
+    get cliente() {
+        return this.#cliente;
+    }
+
+    constructor(cliente, numero, agencia) {
+        this.cliente = cliente;
+        this.numero = numero;
+        this.agencia = agencia;
         this.#saldo = 0;
     }
 
-    depositoEnCuenta (valor) {//this define la cuenta corriente actual 
-        if (valor > 0) {
-           this.#saldo += valor; 
-           return this.#saldo;
-        }       
-    }
-
-    retirarDeCuenta(valor) { //Retiro de dinero
-        if (valor <= this.#saldo){
-            this.#saldo -= valor;
-            return this.#saldo;
-        }   
-    }
-
-    verSaldo(){
+    depositoEnCuenta(valor) {
+        if (valor > 0)
+            this.#saldo += valor;
         return this.#saldo;
     }
 
-    transferirParaCuenta(valor, cuentaDestino){
+    retirarDeCuenta(valor) {
+        if (valor <= this.#saldo)
+            this.#saldo -= valor;
+        return this.#saldo;
+    }
+
+    verSaldo() {
+        return this.#saldo;
+    }
+
+    transferirParaCuenta(valor,cuentaDestino) {
         this.retirarDeCuenta(valor);
         cuentaDestino.depositoEnCuenta(valor);
+        valor = 200;
+        valor = valor*1000;
     }
 }
